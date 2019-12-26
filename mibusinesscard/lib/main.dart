@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.lightBlue,
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
                   textStyle: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
-                      color: Colors.teal[100],
+                      color: Colors.lightBlue[100],
                       letterSpacing: 2.5),
                 ),
               ),
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
                 height: 10,
                 width: 150,
                 child: Divider(
-                  color: Colors.teal[100],
+                  color: Colors.lightBlue[100],
                 ),
               ),
               Card(
@@ -54,14 +54,14 @@ class MyApp extends StatelessWidget {
                   child: ListTile(
                     leading: Icon(
                       Icons.phone,
-                      color: Colors.teal,
+                      color: Colors.lightBlue,
                     ),
                     title: Text(
                       '+250 789 159 557',
                       style: GoogleFonts.sourceSansPro(
                         textStyle: TextStyle(
                           fontSize: 20,
-                          color: Colors.teal[900],
+                          color: Colors.lightBlue[900],
                         ),
                       ),
                     ),
@@ -77,14 +77,14 @@ class MyApp extends StatelessWidget {
                   child: ListTile(
                     leading: Icon(
                       Icons.email,
-                      color: Colors.teal,
+                      color: Colors.lightBlue,
                     ),
                     title: Text(
                       'boriskayienzo@gmail.com',
                       style: GoogleFonts.sourceSansPro(
                         textStyle: TextStyle(
                           fontSize: 20,
-                          color: Colors.teal[900],
+                          color: Colors.lightBlue[900],
                         ),
                       ),
                     ),
