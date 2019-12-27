@@ -4,6 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  final Map infos = {
+    'name': 'Boris Kayiranga',
+    'position': 'Flutter Developer',
+    'tel': '+250 789 159 557',
+    'email': 'boriskayienzo@gmail.com',
+  };
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,52 +19,52 @@ class MyApp extends StatelessWidget {
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               CircleAvatar(
-                radius: 50.0,
+                radius: 50,
                 backgroundImage: AssetImage('images/silverHead.jpg'),
               ),
               Text(
-                'Boris Kayiranga',
-                textAlign: TextAlign.center,
+                infos['name'],
                 style: GoogleFonts.pacifico(
                   textStyle: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               Text(
-                'FLUTTER DEVELOPER',
-                textAlign: TextAlign.center,
+                infos['position'].toUpperCase(),
                 style: GoogleFonts.sourceSansPro(
                   textStyle: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.lightBlue[100],
-                      letterSpacing: 2.5),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.lightBlue[900],
+                  ),
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 20,
                 width: 150,
                 child: Divider(
-                  color: Colors.lightBlue[100],
+                  color: Colors.lightBlue[900],
                 ),
               ),
               Card(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                elevation: 10,
                 color: Colors.white,
-                margin: EdgeInsets.all(20),
-                child: Padding(
-                  padding: EdgeInsets.all(5),
+                child: Container(
+                  width: double.infinity,
+                  margin: EdgeInsets.symmetric(horizontal: 10),
                   child: ListTile(
                     leading: Icon(
                       Icons.phone,
-                      color: Colors.lightBlue,
+                      color: Colors.lightBlue[900],
                     ),
                     title: Text(
-                      '+250 789 159 557',
+                      infos['tel'],
                       style: GoogleFonts.sourceSansPro(
                         textStyle: TextStyle(
                           fontSize: 20,
@@ -68,29 +75,30 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: 20),
               Card(
-                elevation: 8,
+                elevation: 10,
+                margin: EdgeInsets.symmetric(horizontal: 20),
                 color: Colors.white,
-                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Padding(
-                  padding: EdgeInsets.all(5),
+                child: Container(
+                  width: double.infinity,
                   child: ListTile(
                     leading: Icon(
                       Icons.email,
-                      color: Colors.lightBlue,
+                      color: Colors.lightBlue[900],
                     ),
                     title: Text(
-                      'boriskayienzo@gmail.com',
+                      infos['email'],
                       style: GoogleFonts.sourceSansPro(
                         textStyle: TextStyle(
                           fontSize: 20,
-                          color: Colors.lightBlue[900],
+                          color: Colors.blue[900],
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
+              )
             ],
           ),
         ),
