@@ -7,7 +7,7 @@ class Quizzler extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Colors.grey.shade900,
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -25,7 +25,13 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<Icon> scorekeeper = [];
+  List<Icon> _scoreKeeper = [];
+
+  List<String> _questions = [
+    'You can lead a cow down stairs but not up stairs.',
+    'Approximately one quarter of human bones are in the feet.',
+    'A slug\'s blood is green.',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -64,10 +70,12 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  scorekeeper.add(Icon(
-                    Icons.check,
-                    color: Colors.green,
-                  ));
+                  _scoreKeeper.add(
+                    Icon(
+                      Icons.check,
+                      color: Colors.green,
+                    ),
+                  );
                 });
               },
             ),
@@ -87,17 +95,19 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  scorekeeper.add(Icon(
-                    Icons.close,
-                    color: Colors.red,
-                  ));
+                  _scoreKeeper.add(
+                    Icon(
+                      Icons.close,
+                      color: Colors.red,
+                    ),
+                  );
                 });
               },
             ),
           ),
         ),
         Row(
-          children: scorekeeper,
+          children: _scoreKeeper,
         )
       ],
     );
