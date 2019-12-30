@@ -74,12 +74,19 @@ class QuizzBrain {
   bool get getQuestionAnswer {
     return _questions[_questionNumber].questionAnswer;
   }
-
   void nextQuestion() {
     if (_questionNumber < _questions.length - 1) {
       _questionNumber += 1;
-    } else {
-      _questionNumber = 0;
+    } 
+  }
+  bool isFinished(){
+    if(_questionNumber >= _questions.length-1){
+      return true;
+    }else{
+      return false;
     }
+  }
+  void resetQuizz(){
+    _questionNumber = 0;
   }
 }
