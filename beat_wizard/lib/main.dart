@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() => runApp(BeatWizzard());
+Future main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  runApp(BeatWizzard());
+}
 
 class BeatWizzard extends StatelessWidget {
   @override
