@@ -19,7 +19,7 @@ class BeatKey extends StatelessWidget {
               ),
               Expanded(
                 child: BeatButton(
-                  background: Colors.teal,
+                  background: Colors.pink[300],
                   beat: 'violin.wav',
                 ),
               ),
@@ -30,13 +30,13 @@ class BeatKey extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: BeatButton(
-                background: Colors.yellow,
-                beat: 'pop_dance.wav',
+                background: Colors.brown,
+                beat: 'beat1.wav',
               ),
             ),
             Expanded(
               child: BeatButton(
-                background: Colors.orange,
+                background: Colors.orange[600],
                 beat: 'bass.wav',
               ),
             ),
@@ -46,7 +46,7 @@ class BeatKey extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: BeatButton(
-                background: Colors.green,
+                background: Colors.green[900],
                 beat: 'triangle.wav',
               ),
             ),
