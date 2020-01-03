@@ -20,26 +20,7 @@ class _HomepageState extends State<Homepage> {
   Color maleCardColor = inactiveColor;
   Color femaleCardColor = activeColor;
 
-  //0 = male, 1 = female
-  void _updateColor(Gender gender) {
-    if (gender == Gender.male) {
-      if (maleCardColor == activeColor) {
-        maleCardColor = inactiveColor;
-        femaleCardColor = activeColor;
-      } else {
-        maleCardColor = activeColor;
-        femaleCardColor = inactiveColor;
-      }
-    } else if (gender == Gender.female) {
-      if (femaleCardColor == activeColor) {
-        femaleCardColor = inactiveColor;
-        maleCardColor = activeColor;
-      } else {
-        femaleCardColor = activeColor;
-        maleCardColor = inactiveColor;
-      }
-    }
-  }
+  Gender selectedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -54,32 +35,32 @@ class _HomepageState extends State<Homepage> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: GestureDetector(
-                      onTap: () {
+                    child: LayoutCard(
+                      onPress: () {
                         setState(() {
-                          _updateColor(Gender.male);
+                          selectedGender = Gender.male;
                         });
                       },
-                      child: LayoutCard(
-                        background: maleCardColor,
-                        layoutCardChild: IconContent(
-                            label: 'MALE', icon: FontAwesomeIcons.mars),
-                      ),
+                      background: selectedGender == Gender.male
+                          ? activeColor
+                          : inactiveColor,
+                      layoutCardChild: IconContent(
+                          label: 'MALE', icon: FontAwesomeIcons.mars),
                     ),
                   ),
                   Expanded(
-                    child: GestureDetector(
-                      onTap: () {
+                    child: LayoutCard(
+                      onPress: () {
                         setState(() {
-                          _updateColor(Gender.female);
+                          selectedGender = Gender.female;
                         });
                       },
-                      child: LayoutCard(
-                        background: femaleCardColor,
-                        layoutCardChild: IconContent(
-                          label: 'FEMALE',
-                          icon: FontAwesomeIcons.venus,
-                        ),
+                      background: selectedGender == Gender.female
+                          ? activeColor
+                          : inactiveColor,
+                      layoutCardChild: IconContent(
+                        label: 'FEMALE',
+                        icon: FontAwesomeIcons.venus,
                       ),
                     ),
                   )
