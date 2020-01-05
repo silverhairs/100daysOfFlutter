@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import './icon_content.dart';
 import './layout_card.dart';
-
-const double bottomContainerHeight = 80.0;
-const Color activeColor = Color(0xFF1D1E33);
-const Color inactiveColor = Color(0xFF111328);
-const Color bottomContainerColor = Color(0xFFEB1555);
+import './constants.dart';
 
 enum Gender { male, female }
 
@@ -17,10 +14,11 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  Color maleCardColor = inactiveColor;
-  Color femaleCardColor = activeColor;
+  Color maleCardColor = kInactiveColor;
+  Color femaleCardColor = kActiveColor;
 
   Gender selectedGender;
+  double currentHeight = 180.0;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +28,7 @@ class _HomepageState extends State<Homepage> {
       ),
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Expanded(
               child: Row(
@@ -42,8 +41,8 @@ class _HomepageState extends State<Homepage> {
                         });
                       },
                       background: selectedGender == Gender.male
-                          ? activeColor
-                          : inactiveColor,
+                          ? kActiveColor
+                          : kInactiveColor,
                       layoutCardChild: IconContent(
                           label: 'MALE', icon: FontAwesomeIcons.mars),
                     ),
@@ -56,8 +55,8 @@ class _HomepageState extends State<Homepage> {
                         });
                       },
                       background: selectedGender == Gender.female
-                          ? activeColor
-                          : inactiveColor,
+                          ? kActiveColor
+                          : kInactiveColor,
                       layoutCardChild: IconContent(
                         label: 'FEMALE',
                         icon: FontAwesomeIcons.venus,
@@ -68,25 +67,66 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
             Expanded(
-              child: LayoutCard(background: activeColor),
+              child: LayoutCard(
+                background: kActiveColor,
+                layoutCardChild: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'HEIGHT',
+                      style:
+                          GoogleFonts.sourceCodePro(textStyle: kLabelTextStyle),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: <Widget>[
+                        Text(
+                          '$currentHeight',
+                          style: GoogleFonts.sourceCodePro(
+                            textStyle: kNumbersTextStyle,
+                          ),
+                        ),
+                        Text(
+                          'cm',
+                          style: kLabelTextStyle,
+                        )
+                      ],
+                    ),
+                    Slider(
+                      value: double.parse(currentHeight.toStringAsFixed(1)),
+                      min: 115,
+                      max: 250,
+                      activeColor: Color(0xFFEB1555),
+                      inactiveColor: Color(0xFF8D8E98),
+                      onChanged: (double newValue){
+                        setState(() {
+                          currentHeight = double.parse(newValue.toStringAsFixed(1));
+                        });
+                      },
+                    )
+                  ],
+                ),
+              ),
             ),
             Expanded(
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: LayoutCard(background: activeColor),
+                    child: LayoutCard(background: kActiveColor),
                   ),
                   Expanded(
-                    child: LayoutCard(background: activeColor),
+                    child: LayoutCard(background: kActiveColor),
                   )
                 ],
               ),
             ),
             Container(
-              color: bottomContainerColor,
+              color: kBottomContainerColor,
               margin: EdgeInsets.only(top: 10.0),
               width: double.infinity,
-              height: bottomContainerHeight,
+              height: kBottomContainerHeight,
             )
           ],
         ),
