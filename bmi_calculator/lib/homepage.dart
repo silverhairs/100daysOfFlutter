@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import './icon_content.dart';
 import './layout_card.dart';
 import './constants.dart';
+import './weight_button.dart';
 
 enum Gender { male, female }
 
@@ -19,6 +20,7 @@ class _HomepageState extends State<Homepage> {
 
   Gender selectedGender;
   double currentHeight = 180.0;
+  double currentWeight = 20.0;
 
   @override
   Widget build(BuildContext context) {
@@ -94,17 +96,28 @@ class _HomepageState extends State<Homepage> {
                         )
                       ],
                     ),
-                    Slider(
-                      value: double.parse(currentHeight.toStringAsFixed(1)),
-                      min: 115,
-                      max: 250,
-                      activeColor: Color(0xFFEB1555),
-                      inactiveColor: Color(0xFF8D8E98),
-                      onChanged: (double newValue){
-                        setState(() {
-                          currentHeight = double.parse(newValue.toStringAsFixed(1));
-                        });
-                      },
+                    SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        inactiveTrackColor: Color(0xFF8D8E98),
+                        thumbShape:
+                            RoundSliderThumbShape(enabledThumbRadius: 16.0),
+                        overlayShape:
+                            RoundSliderOverlayShape(overlayRadius: 32.0),
+                        activeTrackColor: Colors.white,
+                        thumbColor: Color(0xFFEB1555),
+                        overlayColor: Color(0x29EB1555),
+                      ),
+                      child: Slider(
+                        value: double.parse(currentHeight.toStringAsFixed(1)),
+                        min: 110,
+                        max: 250,
+                        onChanged: (double newValue) {
+                          setState(() {
+                            currentHeight =
+                                double.parse(newValue.toStringAsFixed(1));
+                          });
+                        },
+                      ),
                     )
                   ],
                 ),
@@ -114,7 +127,51 @@ class _HomepageState extends State<Homepage> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: LayoutCard(background: kActiveColor),
+                    child: LayoutCard(
+                      background: kActiveColor,
+                      layoutCardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'WEIGHT',
+                            style: GoogleFonts.sourceCodePro(
+                              textStyle: kLabelTextStyle,
+                            ),
+                          ),
+                          Text(
+                            '${currentWeight.round()}',
+                            style: GoogleFonts.sourceCodePro(
+                              textStyle: kNumbersTextStyle,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              RoundIconButton(
+                                icon: Icon(Icons.remove),
+                                behavior: () {
+                                  setState(() {
+                                    currentWeight > 20
+                                        ? currentWeight--
+                                        : currentWeight = currentWeight;
+                                  });
+                                },
+                              ),
+                              RoundIconButton(
+                                icon: Icon(Icons.add),
+                                behavior: () {
+                                  setState(() {
+                                    currentWeight < 220
+                                        ? currentWeight++
+                                        : currentWeight = currentWeight;
+                                  });
+                                },
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                   Expanded(
                     child: LayoutCard(background: kActiveColor),
