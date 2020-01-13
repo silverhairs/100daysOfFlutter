@@ -5,7 +5,7 @@ class LayoutCard extends StatelessWidget {
   final Widget layoutCardChild;
   final Function onPress;
 
-  LayoutCard({@required this.background, this.layoutCardChild, this.onPress});
+  LayoutCard({@required this.background, @required this.layoutCardChild, this.onPress});
 
   @override
   Widget build(BuildContext context) {

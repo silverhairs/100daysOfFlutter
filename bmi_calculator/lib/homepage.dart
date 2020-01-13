@@ -5,7 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import './icon_content.dart';
 import './layout_card.dart';
 import './constants.dart';
-import './weight_button.dart';
+import './round_icon_button.dart';
+import './result/result.dart';
 
 enum Gender { male, female }
 
@@ -19,8 +20,9 @@ class _HomepageState extends State<Homepage> {
   Color femaleCardColor = kActiveColor;
 
   Gender selectedGender;
-  double currentHeight = 180.0;
-  double currentWeight = 20.0;
+  double currentHeight = 165.0;
+  double currentWeight = 45.0;
+  int currentAge = 14;
 
   @override
   Widget build(BuildContext context) {
@@ -168,22 +170,82 @@ class _HomepageState extends State<Homepage> {
                                 },
                               ),
                             ],
-                          )
+                          ),
                         ],
                       ),
                     ),
                   ),
                   Expanded(
-                    child: LayoutCard(background: kActiveColor),
+                    child: LayoutCard(
+                      background: kActiveColor,
+                      layoutCardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'AGE',
+                            style: GoogleFonts.sourceCodePro(
+                              textStyle: kLabelTextStyle,
+                            ),
+                          ),
+                          Text(
+                            '$currentAge',
+                            style: GoogleFonts.sourceCodePro(
+                              textStyle: kNumbersTextStyle,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              RoundIconButton(
+                                icon: Icon(Icons.remove),
+                                behavior: () {
+                                  setState(() {
+                                    currentAge > 12
+                                        ? currentAge--
+                                        : currentAge = currentAge;
+                                  });
+                                },
+                              ),
+                              RoundIconButton(
+                                icon: Icon(Icons.add),
+                                behavior: () {
+                                  setState(() {
+                                    currentAge < 105
+                                        ? currentAge++
+                                        : currentAge = currentAge;
+                                  });
+                                },
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
                   )
                 ],
               ),
             ),
-            Container(
-              color: kBottomContainerColor,
-              margin: EdgeInsets.only(top: 10.0),
-              width: double.infinity,
-              height: kBottomContainerHeight,
+            GestureDetector(
+              child: Container(
+                color: kBottomContainerColor,
+                margin: EdgeInsets.only(top: 10.0),
+                width: double.infinity,
+                height: kBottomContainerHeight,
+                child: Center(
+                  child: Text(
+                    'CALCULATE',
+                    style: GoogleFonts.sourceCodePro(
+                      textStyle: kBottomLabel,
+                    ),
+                  ),
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Result()),
+                );
+              },
             )
           ],
         ),
