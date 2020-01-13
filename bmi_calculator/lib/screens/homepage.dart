@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import './icon_content.dart';
-import './layout_card.dart';
-import './constants.dart';
-import './round_icon_button.dart';
-import './result/result.dart';
+import '../components/icon_content.dart';
+import '../components/layout_card.dart';
+import '../constants.dart';
+import '../components/round_icon_button.dart';
+import './result.dart';
+import '../components/calculate_banner.dart';
+import '../calculator.dart';
 
 enum Gender { male, female }
 
@@ -20,8 +22,8 @@ class _HomepageState extends State<Homepage> {
   Color femaleCardColor = kActiveColor;
 
   Gender selectedGender;
-  double currentHeight = 165.0;
-  double currentWeight = 45.0;
+  double currentHeight = 165;
+  double currentWeight = 45;
   int currentAge = 14;
 
   @override
@@ -225,25 +227,21 @@ class _HomepageState extends State<Homepage> {
                 ],
               ),
             ),
-            GestureDetector(
-              child: Container(
-                color: kBottomContainerColor,
-                margin: EdgeInsets.only(top: 10.0),
-                width: double.infinity,
-                height: kBottomContainerHeight,
-                child: Center(
-                  child: Text(
-                    'CALCULATE',
-                    style: GoogleFonts.sourceCodePro(
-                      textStyle: kBottomLabel,
-                    ),
-                  ),
-                ),
-              ),
-              onTap: () {
+            CalculateBanner(
+              text: 'CALCULATE',
+              onPress: () {
+                Calculate calculation =
+                    Calculate(height: currentHeight, weight: currentWeight);
+
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Result()),
+                  MaterialPageRoute(
+                    builder: (context) => Result(
+                      result: calculation.calculator(),
+                      resultText: calculation.getResult(),
+                      comment: calculation.interpretation(),
+                    ),
+                  ),
                 );
               },
             )
